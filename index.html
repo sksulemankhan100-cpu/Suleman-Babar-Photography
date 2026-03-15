@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Babar & suleman Photography | Photography & Videography</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --gold:#d4af37;
+  --dark:#111;
+  --light:#ffffff;
+  --soft:#f5f5f5;
+  --text-dark:#222;
+  --text-light:#f8f8f8;
+}
+
+/* Dark mode */
+body.dark{
+  background:var(--dark);
+  color:var(--text-light);
+}
+body.dark .service-box, body.dark .camera-box, body.dark .booking, body.dark .contact div{background:#222; color:#fff;}
+body.dark .portfolio img, body.dark .insta-grid img{filter:brightness(0.9);}
+body.dark footer{background:#111; color:#ccc;}
+body.dark .hero::before{background:rgba(0,0,0,0.5);}
+body.dark .whatsapp{box-shadow:0 0 25px #25D366,0 0 50px #25D366;}
+
+/* General */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
+body{background:var(--light); color:var(--text-dark); scroll-behavior:smooth;}
+header{display:flex; justify-content:space-between; align-items:center; padding:20px 60px; position:sticky; top:0; background:var(--light); box-shadow:0 2px 15px rgba(0,0,0,0.08); z-index:1000;}
+header h1{font-size:28px;}
+nav a{margin-left:25px; text-decoration:none; color:var(--text-dark); font-weight:500;}
+nav a:hover{color:var(--gold);}
+.mode-toggle{cursor:pointer; font-size:20px; margin-left:20px; color:var(--gold);}
+
+/* HERO */
+.hero{position:relative; height:90vh; display:flex; align-items:center; justify-content:center; text-align:center; overflow:hidden;}
+.hero video{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:100%; height:100%; object-fit:cover; z-index:0;}
+.hero::before{content:""; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.3); z-index:1;}
+.hero-content{position:relative; z-index:2;}
+.hero-content h2{font-size:48px; margin-bottom:15px;}
+.hero-content p{font-size:20px; margin-bottom:25px;}
+.hero-content button{padding:14px 40px; background:var(--gold); color:#000; border:none; border-radius:30px; font-weight:700; cursor:pointer;}
+
+/* SECTIONS */
+section{padding:80px 60px;}
+.section-title{text-align:center;margin-bottom:60px;}
+.section-title h2{font-size:36px;color:var(--gold);}
+
+/* SERVICES */
+.services{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px;}
+.service-box{padding:35px; background:var(--soft); border-radius:15px; text-align:center; box-shadow:0 5px 20px rgba(0,0,0,0.08); opacity:0; transform:translateY(40px); transition:.5s;}
+.service-box.show{opacity:1; transform:translateY(0);}
+.service-box i{font-size:40px;color:var(--gold);margin-bottom:15px;}
+
+/* CAMERAS */
+.cameras{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px;}
+.camera-box{background:var(--soft); padding:15px; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); text-align:center; opacity:0; transform:translateY(40px); transition:.5s;}
+.camera-box.show{opacity:1;transform:translateY(0);}
+.camera-box img{width:100%; border-radius:12px; margin-bottom:10px;}
+
+/* RESULT / PORTFOLIO */
+#result .portfolio{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px;}
+#result .portfolio img{width:100%; border-radius:15px; opacity:0; transform:translateY(40px); transition:.5s;}
+#result .portfolio img.show{opacity:1; transform:translateY(0); cursor:grab;}
+
+/* BOOKING */
+.booking{background:var(--soft); padding:60px; border-radius:40px; max-width:650px; margin:auto;}
+.booking input, .booking select{width:100%; padding:16px; margin:12px 0; border-radius:14px; border:1px solid #ddd;}
+.booking button{width:100%; padding:16px; background:var(--gold); border:none; border-radius:50px; font-weight:800; color:#fff; cursor:pointer;}
+
+/* CONTACT CARD */
+.contact{text-align:center;margin-top:30px; display:flex; flex-wrap:wrap; justify-content:center; gap:30px;}
+.contact div{background:var(--soft); padding:30px; border-radius:25px; box-shadow:0 5px 25px rgba(0,0,0,0.1); max-width:300px; text-align:center; flex:1; transition:.3s;}
+.contact div:hover{transform:scale(1.05); box-shadow:0 10px 30px rgba(0,0,0,0.15);}
+.contact i{font-size:30px; margin-bottom:10px; display:block;}
+.contact a{color:inherit; text-decoration:none;}
+.insta-btn{display:inline-block; margin-top:15px; padding:10px 20px; background:#e1306c; color:#fff; border-radius:25px; text-decoration:none;}
+
+/* FOOTER */
+footer{background:var(--soft); padding:20px; text-align:center; margin-top:50px;}
+
+/* WHATSAPP BUTTON */
+.whatsapp{position:fixed; bottom:25px; right:25px; background:#25D366; padding:20px; border-radius:50%; font-size:28px; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px #25D366,0 0 50px #25D366; z-index:999; transition:0.3s;}
+.whatsapp:hover{transform:scale(1.25);}
+
+/* Responsive */
+@media(max-width:768px){
+  header{flex-direction:column;}
+  nav{margin-top:15px;}
+  .hero-content h2{font-size:32px;}
+  .contact{flex-direction:column;}
+}
+<style>
+    body {
+        background-color: white;
+        color: black;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+        background-color: black;
+        color: white;
+    }
+
+    #toggleBtn {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 1000; /* button hamesha top par rahe */
+    }
+</style>
+</style>
+</head>
+<body>
+
+<header>
+<h1>S.B.K Studio</h1>
+<nav>
+  <a href="#services">Services</a>
+  <a href="#cameras">Cameras</a>
+  <a href="#result">Result</a>
+  <a href="#booking">Booking</a>
+  <a href="#contact">Contact</a>
+  <i class="fas fa-moon mode-toggle" id="modeToggle" title="Toggle Dark/Light Mode"></i>
+</nav>
+</header>
+
+<!-- HERO VIDEO -->
+<div class="hero">
+<video src="https://www.w3schools.com/howto/rain.mp4" autoplay muted loop></video>
+<div class="hero-content">
+<h2>Professional Photography & Videography</h2>
+<p>Turning moments into memories</p>
+<button onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+</div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+<div class="section-title"><h2>Our Services</h2></div>
+<div class="services">
+  <div class="service-box"><i class="fa-solid fa-camera"></i><h3>Photography</h3></div>
+  <div class="service-box"><i class="fa-solid fa-video"></i><h3>Videography</h3></div>
+  <div class="service-box"><i class="fa-solid fa-ring"></i><h3>Wedding Coverage</h3></div>
+</div>
+</section>
+
+<!-- CAMERAS -->
+<section id="cameras">
+<div class="section-title"><h2>Our Cameras</h2></div>
+<div class="cameras">
+  <div class="camera-box"><img src="https://via.placeholder.com/400x250"><h4>Canon EOS R5</h4></div>
+  <div class="camera-box"><img src="https://via.placeholder.com/400x250"><h4>Sony A7 IV</h4></div>
+  <div class="camera-box"><img src="https://via.placeholder.com/400x250"><h4>Nikon Z6</h4></div>
+</div>
+</section>
+
+<!-- RESULT / PORTFOLIO -->
+<section id="result">
+<div class="section-title"><h2>Result</h2></div>
+
+<div style="text-align:center; margin-bottom:20px;">
+<input type="file" id="imageUpload" multiple accept="image/*" 
+       style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+<p style="margin-top:10px; font-size:14px; color:#777;">
+  Select images from your phone to preview here. Drag & drop to reorder.
+</p>
+</div>
+
+<div class="portfolio" id="resultGallery"></div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+<div class="section-title"><h2>Book Your Event</h2></div>
+<div class="booking">
+<input id="name" placeholder="Your Name">
+<select id="event">
+<option value="">Event Type</option>
+<option>Wedding</option>
+<option>Birthday</option>
+<option>Party</option>
+</select>
+<input id="date" type="date">
+<input id="time" type="time">
+<input id="place" placeholder="Location">
+<button onclick="send()">Book on WhatsApp</button>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="section-title"><h2>Contact & Instagram</h2></div>
+<div class="contact">
+<div><i class="fa-solid fa-phone" style="color:var(--gold)"></i><h3>Phone</h3><p><a href="tel:03224050504">03334299743</a></p></div>
+<div><i class="fa-solid fa-location-dot" style="color:var(--gold)"></i><h3>Location</h3><p><a href="https://www.google.com/maps/place/Gujarat,+Pakistan" target="_blank">Gujarat, Pakistan</a></p></div>
+<div><i class="fab fa-instagram" style="color:#e1306c"></i><h3>Instagram</h3><p>Follow our latest work</p><a class="insta-btn" href="https://instagram.com/" target="_blank">Follow</a></div>
+</div>
+</section>
+
+<footer>© 2026 babar & suleman Photography</summary> | All Rights Reserved</footer>
+
+<a class="whatsapp" href="https://wa.me/923224050504" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+// Scroll animations
+const obs = new IntersectionObserver(e=>{
+  e.forEach(el=>{
+    if(el.isIntersecting){el.target.classList.add('show'); obs.unobserve(el.target);}
+  });
+},{threshold:0.4});
+document.querySelectorAll('.service-box,.camera-box,.portfolio img').forEach(el=>obs.observe(el));
+
+// WhatsApp Booking
+function send(){
+let n=name.value; let evt=event.value; let d=date.value; let t=time.value; let p=place.value;
+if(!n||!evt||!d||!t||!p){alert("Fill all fields");return;}
+let msg=`Hello R.K Studio,%0AName:${n}%0AEvent:${evt}%0ADate:${d}%0ATime:${t}%0ALocation:${p}`;
+window.open("https://wa.me/923298162144?text="+msg,"_blank");
+}
+
+// Dark/Light toggle
+const modeToggle = document.getElementById('modeToggle');
+modeToggle.addEventListener('click',()=>{
+  document.body.classList.toggle('dark');
+  if(document.body.classList.contains('dark')){
+    modeToggle.classList.replace('fa-moon','fa-sun');
+  } else {modeToggle.classList.replace('fa-sun','fa-moon');}
+});
+
+// Drag & Drop Result Preview
+const imageInput = document.getElementById('imageUpload');
+const gallery = document.getElementById('resultGallery');
+function makeDraggable(el){
+  el.setAttribute('draggable', true);
+  el.addEventListener('dragstart', (e)=>{
+    e.dataTransfer.setData('text/plain', el.dataset.index);
+    el.classList.add('dragging');
+  });
+  el.addEventListener('dragend', ()=>{el.classList.remove('dragging');});
+}
+gallery.addEventListener('dragover', (e)=>{
+  e.preventDefault();
+  const afterElement = getDragAfterElement(gallery, e.clientY);
+  const dragging = document.querySelector('.dragging');
+  if(afterElement == null){ gallery.appendChild(dragging); } 
+  else { gallery.insertBefore(dragging, afterElement); }
+});
+function getDragAfterElement(container, y){
+  const draggableElements = [...container.querySelectorAll('img:not(.dragging)')];
+  return draggableElements.reduce((closest, child)=>{
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height/2;
+    if(offset < 0 && offset > closest.offset){ return {offset: offset, element: child}; } 
+    else { return closest; }
+  }, {offset: Number.NEGATIVE_INFINITY}).element;
+}
+imageInput.addEventListener('change', function(){
+  gallery.innerHTML = '';
+  const files = Array.from(this.files);
+  files.forEach((file, index) => {
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style.width = '100%';
+      img.style.borderRadius = '15px';
+      img.dataset.index = index;
+      img.classList.add('show');
+      makeDraggable(img);
+      gallery.appendChild(img);
+    }
+    reader.readAsDataURL(file);
+  });
+});
+</script>
+</body>
+</html>
